@@ -6,5 +6,5 @@ all: sdltest
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c $(LIBS)
 
-sdltest:
+sdltest: main.o
 	$(CC) $(CFLAGS) -o sdltest main.o $(LIBS)
