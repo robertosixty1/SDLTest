@@ -73,7 +73,7 @@ int main(void)
 	   } break;
 
 	   case SDLK_SPACE:{
-
+	       
 	   } break;
 	   }
         } break;
