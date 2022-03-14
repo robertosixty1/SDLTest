@@ -3,13 +3,17 @@
 
 #include <SDL.h>
 
-int main()
+void scc(int code)
 {
-    if (SDL_Init(SDL_INIT_VIDEO))
+    if (code < 0)
     {
-        fprintf(stderr, "ERROR: could not initialize SDL: %s", SDL_GetError());
-        exit(1);
+        fprintf(stderr, "SDL ERROR: %s\n", SDL_GetError());
     }
+}
+
+int main(void)
+{
+    scc(SDL_Init(SDL_INIT_VIDEO));
 
     // Setup window & renderer
     
@@ -21,16 +25,22 @@ int main()
     SDL_Surface* image = SDL_LoadBMP("amogus.bmp");
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 127, 127, 127, 255);
 
     // SDL_Rect's
+    //{{
 
     SDL_Rect image_rect = {
          .x = 0,
          .y = 0,
          .w = 500,
          .h = 500,
-     };
+    };
+
+    int velocity = 20;
+    
+    //}}
+
     
     bool quit = false;
     
@@ -43,10 +53,36 @@ int main()
         case SDL_QUIT: {
             quit = true;
 	} break;
-        }
+	case SDL_KEYDOWN:{
+	   switch (event.key.keysym.sym)
+	   {
+	   case SDLK_LEFT:{
+	       image_rect.x -= velocity;
+	   } break;
+	   
+	   case SDLK_RIGHT:{
+	       image_rect.x += velocity;
+	   } break;
+	   
+	   case SDLK_UP:{
+	       image_rect.y -= velocity;
+	   } break;
+	   
+	   case SDLK_DOWN:{
+	       image_rect.y += velocity;
+	   } break;
+
+	   case SDLK_SPACE:{
+
+	   } break;
+	   }
+        } break;
+	}
 	
-	SDL_RenderCopy(renderer, texture, NULL, &image_rect);
+	scc(SDL_RenderCopy(renderer, texture, NULL, &image_rect));
 	SDL_RenderPresent(renderer);
+
+	scc(SDL_RenderClear(renderer));
     }
 
     SDL_DestroyTexture(texture);
