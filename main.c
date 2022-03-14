@@ -5,12 +5,14 @@
 
 int main()
 {
-    if (SDL_Init(SDL_INIT_EVERYTHING))
+    if (SDL_Init(SDL_INIT_VIDEO))
     {
         fprintf(stderr, "ERROR: could not initialize SDL: %s", SDL_GetError());
         exit(1);
     }
 
+    // Setup window & renderer
+    
     SDL_Event event;
     
     SDL_Window* window = SDL_CreateWindow("AMOGUS", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 1000, 0);
@@ -20,6 +22,15 @@ int main()
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
 
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+    // SDL_Rect's
+
+    SDL_Rect image_rect = {
+         .x = 0,
+         .y = 0,
+         .w = 500,
+         .h = 500,
+     };
     
     bool quit = false;
     
@@ -33,8 +44,8 @@ int main()
             quit = true;
 	} break;
         }
-
-	SDL_RenderCopy(renderer, texture, NULL, NULL);
+	
+	SDL_RenderCopy(renderer, texture, NULL, &image_rect);
 	SDL_RenderPresent(renderer);
     }
 
