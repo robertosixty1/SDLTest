@@ -128,8 +128,10 @@ int main(void)
 
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(image);
+    
     SDL_DestroyTexture(textureb);
     SDL_FreeSurface(imageb);
+    
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     
