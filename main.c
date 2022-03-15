@@ -22,10 +22,10 @@ int main(void)
     SDL_Window* window = SDL_CreateWindow("AMOGUS", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 1000, 0);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-    SDL_Surface* image = SDL_LoadBMP("amogus.bmp");
+    SDL_Surface* image = SDL_LoadBMP("amogus1.bmp");
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
 
-    SDL_Surface* imageb = SDL_LoadBMP("amogus.bmp");
+    SDL_Surface* imageb = SDL_LoadBMP("amogus2.bmp");
     SDL_Texture* textureb = SDL_CreateTextureFromSurface(renderer, imageb);
 
 
