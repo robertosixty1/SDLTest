@@ -25,18 +25,30 @@ int main(void)
     SDL_Surface* image = SDL_LoadBMP("amogus.bmp");
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
 
+    SDL_Surface* imageb = SDL_LoadBMP("amogus.bmp");
+    SDL_Texture* textureb = SDL_CreateTextureFromSurface(renderer, imageb);
+
+
     SDL_SetRenderDrawColor(renderer, 127, 127, 127, 255);
 
     // SDL_Rect's
     //{{
 
-    SDL_Rect image_rect = {
+    SDL_Rect imagea_rect = {
          .x = 0,
          .y = 0,
          .w = 500,
          .h = 500,
     };
 
+    SDL_Rect imageb_rect = {
+         .x = 0,
+         .y = 0,
+         .w = 500,
+         .h = 500,
+    };
+
+    bool which = true;
     int velocity = 20;
     
     //}}
@@ -57,29 +69,58 @@ int main(void)
 	   switch (event.key.keysym.sym)
 	   {
 	   case SDLK_LEFT:{
-	       image_rect.x -= velocity;
+	       if (which)
+	       {
+	           imagea_rect.x -= velocity;
+	       }
+	       else
+	       {
+		   imageb_rect.x -= velocity;
+	       }
 	   } break;
 	   
 	   case SDLK_RIGHT:{
-	       image_rect.x += velocity;
+	       if (which)
+	       {
+	           imagea_rect.x += velocity;
+	       }
+	       else
+	       {
+		   imageb_rect.x += velocity;
+	       }
 	   } break;
 	   
 	   case SDLK_UP:{
-	       image_rect.y -= velocity;
+	       if (which)
+	       {
+	           imagea_rect.y -= velocity;
+	       }
+	       else
+	       {
+		   imageb_rect.y -= velocity;
+	       }
 	   } break;
 	   
 	   case SDLK_DOWN:{
-	       image_rect.y += velocity;
+	       if (which)
+	       {
+	           imagea_rect.y += velocity;
+	       }
+	       else
+	       {
+		   imageb_rect.y += velocity;
+	       }
 	   } break;
 
 	   case SDLK_SPACE:{
-	       
+               which = !which;
 	   } break;
 	   }
         } break;
 	}
 	
-	scc(SDL_RenderCopy(renderer, texture, NULL, &image_rect));
+	scc(SDL_RenderCopy(renderer, texture, NULL, &imagea_rect));
+	scc(SDL_RenderCopy(renderer, textureb, NULL, &imageb_rect));
 	SDL_RenderPresent(renderer);
 
 	scc(SDL_RenderClear(renderer));
@@ -87,6 +128,8 @@ int main(void)
 
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(image);
+    SDL_DestroyTexture(textureb);
+    SDL_FreeSurface(imageb);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     
