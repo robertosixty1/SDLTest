@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "SDL2/SDL_mixer.h"
-#include "SDL2/SDL.h"
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
 static const char* music_path = "amogus.mp3";
 
@@ -30,7 +30,7 @@ int main(void)
 
     Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
     Mix_Music *music = Mix_LoadMUS(music_path);
-    Mix_PlayMusic(music, 1);
+    Mix_PlayMusic(music, 1000000);
     
     // Setup window & renderer
     
@@ -129,9 +129,9 @@ int main(void)
 	       }
 	   } break;
 
-	   case SDLK_SPACE:{
+           case SDLK_SPACE:{
                which = !which;
-	   } break;
+           } break;
 	   }
         } break;
 	}
