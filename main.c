@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include <SDL.h>
+#include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL.h"
+
+static const char* music_path = "amogus.mp3";
 
 void scc(int code)
 {
@@ -13,8 +16,22 @@ void scc(int code)
 
 int main(void)
 {
-    scc(SDL_Init(SDL_INIT_VIDEO));
+    scc(SDL_Init(SDL_INIT_EVERYTHING));
 
+    // Setup music
+
+    int result = 0;
+    int flags = MIX_INIT_MP3;
+    if (flags != (result = Mix_Init(flags))) {
+        fprintf(stderr, "Could not initialize mixer (result: %d).\n", result);
+        fprintf(stderr, "Mix_Init: %s\n", Mix_GetError());
+        exit(1);
+    }
+
+    Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+    Mix_Music *music = Mix_LoadMUS(music_path);
+    Mix_PlayMusic(music, 1);
+    
     // Setup window & renderer
     
     SDL_Event event;
@@ -134,7 +151,10 @@ int main(void)
     
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    
+
+    Mix_FreeMusic(music);
+
+    Mix_Quit();
     SDL_Quit();
     
     return 0;

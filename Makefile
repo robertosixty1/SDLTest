@@ -1,5 +1,5 @@
-CFLAGS=-Wall -Wextra -std=c11 -pedantic -ggdb `pkg-config --cflags sdl2`
-LIBS=`pkg-config --libs sdl2`
+CFLAGS=-Wall -Wextra -std=c11 -pedantic -ggdb -I/usr/include/ `pkg-config --cflags sdl2` `pkg-config --cflags SDL2_mixer`
+LIBS=`pkg-config --libs sdl2` `pkg-config --libs SDL2_mixer`
 
 all: sdltest
 
