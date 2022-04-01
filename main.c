@@ -31,11 +31,11 @@ int main(void)
     Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
     Mix_Music *music = Mix_LoadMUS(music_path);
     Mix_PlayMusic(music, 1000000);
-    
+
     // Setup window & renderer
-    
+
     SDL_Event event;
-    
+
     SDL_Window* window = SDL_CreateWindow("AMOGUS", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 1000, 0);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -67,88 +67,88 @@ int main(void)
 
     bool which = true;
     int velocity = 20;
-    
+
     //}}
 
-    
+
     bool quit = false;
-    
+
     while (!quit)
     {
         SDL_WaitEvent(&event);
 
-	switch (event.type)
+    switch (event.type)
         {
         case SDL_QUIT: {
             quit = true;
-	} break;
-	case SDL_KEYDOWN:{
-	   switch (event.key.keysym.sym)
-	   {
-	   case SDLK_LEFT:{
-	       if (which)
-	       {
-	           imagea_rect.x -= velocity;
-	       }
-	       else
-	       {
-		   imageb_rect.x -= velocity;
-	       }
-	   } break;
-	   
-	   case SDLK_RIGHT:{
-	       if (which)
-	       {
-	           imagea_rect.x += velocity;
-	       }
-	       else
-	       {
-		   imageb_rect.x += velocity;
-	       }
-	   } break;
-	   
-	   case SDLK_UP:{
-	       if (which)
-	       {
-	           imagea_rect.y -= velocity;
-	       }
-	       else
-	       {
-		   imageb_rect.y -= velocity;
-	       }
-	   } break;
-	   
-	   case SDLK_DOWN:{
-	       if (which)
-	       {
-	           imagea_rect.y += velocity;
-	       }
-	       else
-	       {
-		   imageb_rect.y += velocity;
-	       }
-	   } break;
+    } break;
+    case SDL_KEYDOWN:{
+       switch (event.key.keysym.sym)
+       {
+       case SDLK_LEFT:{
+           if (which)
+           {
+               imagea_rect.x -= velocity;
+           }
+           else
+           {
+           imageb_rect.x -= velocity;
+           }
+       } break;
+
+       case SDLK_RIGHT:{
+           if (which)
+           {
+               imagea_rect.x += velocity;
+           }
+           else
+           {
+           imageb_rect.x += velocity;
+           }
+       } break;
+
+       case SDLK_UP:{
+           if (which)
+           {
+               imagea_rect.y -= velocity;
+           }
+           else
+           {
+           imageb_rect.y -= velocity;
+           }
+       } break;
+
+       case SDLK_DOWN:{
+           if (which)
+           {
+               imagea_rect.y += velocity;
+           }
+           else
+           {
+           imageb_rect.y += velocity;
+           }
+       } break;
 
            case SDLK_SPACE:{
                which = !which;
            } break;
-	   }
+       }
         } break;
-	}
-	
-	scc(SDL_RenderCopy(renderer, texture, NULL, &imagea_rect));
-	scc(SDL_RenderCopy(renderer, textureb, NULL, &imageb_rect));
-	SDL_RenderPresent(renderer);
+    }
 
-	scc(SDL_RenderClear(renderer));
+    scc(SDL_RenderCopy(renderer, texture, NULL, &imagea_rect));
+    scc(SDL_RenderCopy(renderer, textureb, NULL, &imageb_rect));
+    SDL_RenderPresent(renderer);
+
+    scc(SDL_RenderClear(renderer));
     }
 
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(image);
-    
+
     SDL_DestroyTexture(textureb);
     SDL_FreeSurface(imageb);
-    
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
@@ -156,6 +156,6 @@ int main(void)
 
     Mix_Quit();
     SDL_Quit();
-    
+
     return 0;
 }
