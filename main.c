@@ -84,57 +84,57 @@ int main(void)
         } break;
 
         case SDL_KEYDOWN:{
-           switch (event.key.keysym.sym)
-           {
-           case SDLK_LEFT:{
-               if (which)
-               {
-                   imagea_rect.x -= velocity;
-               }
-               else
-               {
-                   imageb_rect.x -= velocity;
-               }
-           } break;
+            switch (event.key.keysym.sym)
+            {
+            case SDLK_LEFT:{
+                if (which)
+                {
+                    imagea_rect.x -= velocity;
+                }
+                else
+                {
+                    imageb_rect.x -= velocity;
+                }
+            } break;
 
-           case SDLK_RIGHT:{
-               if (which)
-               {
-                   imagea_rect.x += velocity;
-               }
-               else
-               {
-                   imageb_rect.x += velocity;
-               }
-           } break;
+            case SDLK_RIGHT:{
+                if (which)
+                {
+                    imagea_rect.x += velocity;
+                }
+                else
+                {
+                    imageb_rect.x += velocity;
+                }
+            } break;
 
-           case SDLK_UP:{
-               if (which)
-               {
-                   imagea_rect.y -= velocity;
-               }
-               else
-               {
-               imageb_rect.y -= velocity;
-               }
-           } break;
+            case SDLK_UP:{
+                if (which)
+                {
+                    imagea_rect.y -= velocity;
+                }
+                else
+                {
+                imageb_rect.y -= velocity;
+                }
+            } break;
 
-           case SDLK_DOWN:{
-               if (which)
-               {
-                   imagea_rect.y += velocity;
-               }
-               else
-               {
-                   imageb_rect.y += velocity;
-               }
-           } break;
+            case SDLK_DOWN:{
+                if (which)
+                {
+                    imagea_rect.y += velocity;
+                }
+                else
+                {
+                    imageb_rect.y += velocity;
+                }
+            } break;
 
-           case SDLK_SPACE:{
-               which = !which;
-           } break;
+            case SDLK_SPACE:{
+                which = !which;
+            } break;
 
-           }
+            }
         } break;
 
         }
