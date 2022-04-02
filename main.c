@@ -77,70 +77,73 @@ int main(void)
     {
         SDL_WaitEvent(&event);
 
-    switch (event.type)
+        switch (event.type)
         {
         case SDL_QUIT: {
             quit = true;
-    } break;
-    case SDL_KEYDOWN:{
-       switch (event.key.keysym.sym)
-       {
-       case SDLK_LEFT:{
-           if (which)
-           {
-               imagea_rect.x -= velocity;
-           }
-           else
-           {
-           imageb_rect.x -= velocity;
-           }
-       } break;
+        } break;
 
-       case SDLK_RIGHT:{
-           if (which)
+        case SDL_KEYDOWN:{
+           switch (event.key.keysym.sym)
            {
-               imagea_rect.x += velocity;
-           }
-           else
-           {
-           imageb_rect.x += velocity;
-           }
-       } break;
+           case SDLK_LEFT:{
+               if (which)
+               {
+                   imagea_rect.x -= velocity;
+               }
+               else
+               {
+                   imageb_rect.x -= velocity;
+               }
+           } break;
 
-       case SDLK_UP:{
-           if (which)
-           {
-               imagea_rect.y -= velocity;
-           }
-           else
-           {
-           imageb_rect.y -= velocity;
-           }
-       } break;
+           case SDLK_RIGHT:{
+               if (which)
+               {
+                   imagea_rect.x += velocity;
+               }
+               else
+               {
+                   imageb_rect.x += velocity;
+               }
+           } break;
 
-       case SDLK_DOWN:{
-           if (which)
-           {
-               imagea_rect.y += velocity;
-           }
-           else
-           {
-           imageb_rect.y += velocity;
-           }
-       } break;
+           case SDLK_UP:{
+               if (which)
+               {
+                   imagea_rect.y -= velocity;
+               }
+               else
+               {
+               imageb_rect.y -= velocity;
+               }
+           } break;
+
+           case SDLK_DOWN:{
+               if (which)
+               {
+                   imagea_rect.y += velocity;
+               }
+               else
+               {
+                   imageb_rect.y += velocity;
+               }
+           } break;
 
            case SDLK_SPACE:{
                which = !which;
            } break;
-       }
+
+           }
         } break;
-    }
 
-    scc(SDL_RenderCopy(renderer, texture, NULL, &imagea_rect));
-    scc(SDL_RenderCopy(renderer, textureb, NULL, &imageb_rect));
-    SDL_RenderPresent(renderer);
+        }
 
-    scc(SDL_RenderClear(renderer));
+        scc(SDL_RenderCopy(renderer, texture, NULL, &imagea_rect));
+        scc(SDL_RenderCopy(renderer, textureb, NULL, &imageb_rect));
+        SDL_RenderPresent(renderer);
+
+        scc(SDL_RenderClear(renderer));
     }
 
     SDL_DestroyTexture(texture);
